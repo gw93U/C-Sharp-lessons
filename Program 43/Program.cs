@@ -10,7 +10,7 @@ int InputNumber(string text) // Ручной ввод числа
 double[] GetIntersection(double b1, double k1, double b2, double k2) // Получение точки пересечения двух прямых, заданных уравнениями
 {
     if (k1 == k2)
-        return new double[2] { 0, 0 }; // Возвращает 0,0 если пересечения нет (как обойти?)
+        return null;
     double[] intersection = new double[2];
     intersection[0] = (b2 - b1) / (k1 - k2);
     intersection[1] = intersection[0] * k1 + b1;
@@ -23,6 +23,7 @@ double b1 = InputNumber("Введите b1: "),
     k2 = InputNumber("Введите k2: ");
 
 double[] cross = GetIntersection(b1, k1, b2, k2);
-Console.WriteLine(
-    $"x={cross[0]}, y={cross[1]} - точка пересечения прямых y = {k1}x + {b1}, y = {k2}x + {b2}"
-);
+if (cross == null)
+    Console.WriteLine($"Прямые y = {k1}x + {b1}, y = {k2}x + {b2} не пересекаются");
+else
+    Console.WriteLine($"x={cross[0]}, y={cross[1]} - точка пересечения прямых y = {k1}x + {b1}, y = {k2}x + {b2}");
